@@ -108,10 +108,16 @@ h2 {
     letter-spacing: -0.5px;
 }
 
+/* Form field container */
+.form-field {
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+}
+
 /* Label styling with required indicator */
 label {
     display: block;
-    margin: var(--spacing-md) 0 var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
     color: var(--text-primary);
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-base);
@@ -128,7 +134,7 @@ input,
 textarea {
     width: 100%;
     padding: 16px 20px;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 0;
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-base);
@@ -182,6 +188,69 @@ textarea {
     resize: vertical;
     min-height: 120px;
     max-height: 300px;
+}
+
+/* Error message styling */
+.error-message {
+    display: none;
+    color: var(--error-color);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    font-weight: var(--font-weight-normal);
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Success message styling */
+.success-message {
+    display: none;
+    color: var(--success-color);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    font-weight: var(--font-weight-bold);
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Success indicator using ::before pseudo-element */
+.success-message::before {
+    content: '✓ ';
+    font-weight: var(--font-weight-bold);
+    margin-right: 4px;
+}
+
+/* Error indicator using ::before pseudo-element */
+.error-message::before {
+    content: '⚠ ';
+    margin-right: 4px;
+}
+
+/* Show error message when input is invalid and touched */
+input:invalid:not(:focus):not(:placeholder-shown) ~ .error-message,
+textarea:invalid:not(:focus):not(:placeholder-shown) ~ .error-message {
+    display: block;
+}
+
+/* Show success message when input is valid and touched */
+input:valid:not(:placeholder-shown) ~ .success-message,
+textarea:valid:not(:placeholder-shown) ~ .success-message {
+    display: block;
+}
+
+/* Hide success message when showing error */
+input:invalid:not(:focus):not(:placeholder-shown) ~ .success-message,
+textarea:invalid:not(:focus):not(:placeholder-shown) ~ .success-message {
+    display: none;
+}
+
+/* Keyframe animation for messages sliding down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Button with enhanced styling */
@@ -238,14 +307,22 @@ button:disabled {
         margin-bottom: var(--spacing-lg);
     }
 
+    .form-field {
+        margin-bottom: var(--spacing-md);
+    }
+
     label {
-        margin: var(--spacing-sm) 0 var(--spacing-xs);
+        margin-bottom: var(--spacing-xs);
     }
 
     input,
     textarea {
         padding: 14px 16px;
-        margin-bottom: var(--spacing-md);
+    }
+
+    .error-message,
+    .success-message {
+        font-size: 12px;
     }
 
     button {
@@ -323,5 +400,13 @@ button:disabled {
     .form-container {
         background-color: var(--background-white);
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .error-message {
+        color: var(--error-color);
+    }
+
+    .success-message {
+        color: var(--success-color);
     }
 }
