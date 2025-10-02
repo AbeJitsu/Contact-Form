@@ -360,11 +360,11 @@ button:disabled {
         --medium-dark-blue: #42a5f5;
         --dark-blue: #2196f3;
 
-        /* High contrast colors for dark mode */
+        /* High contrast colors for dark mode - LIGHTENED */
         --text-primary: #ffffff;
         --text-secondary: #e3f2fd;
-        --background-white: #0a0e1a;
-        --background-light: #1a1f2e;
+        --background-white: #2d3748;      /* Lightened from #0a0e1a */
+        --background-light: #374151;      /* Lightened from #1a1f2e */
         --border-color: #2196f3;
         --border-focus: #64b5f6;
         --error-color: #ff5252;
@@ -372,12 +372,12 @@ button:disabled {
     }
 
     body {
-        background: linear-gradient(135deg, #0d47a1 0%, #01579b 100%);
+        background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
     }
 
     h2 {
         color: var(--text-primary);
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     label {
@@ -386,20 +386,20 @@ button:disabled {
 
     input,
     textarea {
-        background-color: #1a1f2e;
+        background-color: #374151;        /* Lightened from #1a1f2e */
         color: var(--text-primary);
         border-color: var(--border-color);
     }
 
     input::placeholder,
     textarea::placeholder {
-        color: #64b5f6;
-        opacity: 0.6;
+        color: #90caf9;
+        opacity: 0.7;
     }
 
     .form-container {
         background-color: var(--background-white);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     }
 
     .error-message {
