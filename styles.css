@@ -72,23 +72,28 @@ body {
     padding: var(--spacing-lg);
 }
 
-/* Form Container with enhanced box-shadow */
+/* Form Container with backlight glow */
 .form-container {
     background-color: var(--background-white);
     border-radius: var(--border-radius-md);
     padding: 60px;
     width: 100%;
     max-width: 550px;
-    box-shadow: 0 20px 60px rgba(13, 71, 161, 0.15);
+    box-shadow: 0 0 60px 10px rgba(255, 255, 255, 0.5);
     transform: translateY(0);
     transition: transform var(--transition-speed) ease,
                 box-shadow var(--transition-speed) ease;
 }
 
-/* Hover effect using transform */
+/* Hover effect - intensified backlight */
 .form-container:hover {
     transform: translateY(-5px);
-    box-shadow: 0 25px 70px rgba(13, 71, 161, 0.2);
+    box-shadow: 0 0 80px 15px rgba(255, 255, 255, 0.7);
+}
+
+/* Focus-within effect - intensified backlight when form has focus */
+.form-container:has(input:focus, textarea:focus) {
+    box-shadow: 0 0 80px 15px rgba(255, 255, 255, 0.7);
 }
 
 /* Flexbox layout */
@@ -347,7 +352,115 @@ button:disabled {
     /* Scale effect on hover for large screens */
     .form-container:hover {
         transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 0 100px 20px rgba(255, 255, 255, 0.8);
     }
+
+    .form-container:has(input:focus, textarea:focus) {
+        box-shadow: 0 0 100px 20px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Success Notification Styling */
+.success-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity var(--transition-speed) ease;
+    backdrop-filter: blur(4px);
+}
+
+.success-notification.show {
+    opacity: 1;
+}
+
+.success-notification-content {
+    background-color: var(--background-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-xl);
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(13, 71, 161, 0.3);
+    transform: scale(0.9) translateY(-20px);
+    transition: transform var(--transition-speed) ease;
+}
+
+.success-notification.show .success-notification-content {
+    transform: scale(1) translateY(0);
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--success-color), #1976d2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-lg);
+    font-size: 48px;
+    color: white;
+    animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-notification-content h3 {
+    color: var(--text-primary);
+    font-size: calc(var(--font-size-base) * 1.5);
+    margin-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-bold);
+}
+
+.success-notification-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    line-height: var(--line-height);
+}
+
+.close-notification {
+    background: linear-gradient(135deg, var(--medium-blue), var(--medium-dark-blue));
+    color: var(--background-white);
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    transition: background var(--transition-speed) ease,
+                transform var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+}
+
+.close-notification:hover {
+    background: linear-gradient(135deg, var(--medium-dark-blue), var(--dark-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(21, 101, 192, 0.4);
+}
+
+.close-notification:active {
+    transform: translateY(0);
 }
 
 /* Dark mode support using prefers-color-scheme */
@@ -399,7 +512,15 @@ button:disabled {
 
     .form-container {
         background-color: var(--background-white);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 60px 10px rgba(144, 202, 249, 0.6);
+    }
+
+    .form-container:hover {
+        box-shadow: 0 0 80px 15px rgba(144, 202, 249, 0.8);
+    }
+
+    .form-container:has(input:focus, textarea:focus) {
+        box-shadow: 0 0 80px 15px rgba(144, 202, 249, 0.8);
     }
 
     .error-message {
@@ -408,5 +529,21 @@ button:disabled {
 
     .success-message {
         color: var(--success-color);
+    }
+
+    .success-notification {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .success-notification-content {
+        background-color: var(--background-white);
+    }
+
+    .success-notification-content h3 {
+        color: var(--text-primary);
+    }
+
+    .success-notification-content p {
+        color: var(--text-secondary);
     }
 }
