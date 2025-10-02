@@ -29,14 +29,17 @@
     --spacing-lg: 32px;
     --spacing-xl: 48px;
 
-    /* Typography */
-    --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Typography - Professional Web Fonts */
+    --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --font-size-base: 16px;
     --font-size-sm: 14px;
     --font-size-lg: 18px;
     --font-weight-normal: 400;
-    --font-weight-bold: 600;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
     --line-height: 1.6;
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0;
 
     /* Border Radius */
     --border-radius-sm: 5px;
@@ -110,7 +113,7 @@ h2 {
     font-size: calc(var(--font-size-base) * 2);
     font-weight: var(--font-weight-bold);
     text-shadow: none;
-    letter-spacing: -0.5px;
+    letter-spacing: var(--letter-spacing-tight);
 }
 
 /* Form field container */
@@ -124,8 +127,10 @@ label {
     display: block;
     margin-bottom: var(--spacing-xs);
     color: var(--text-primary);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-normal);
+    text-transform: uppercase;
 }
 
 /* Add asterisk to required fields using ::after pseudo-element */
@@ -144,10 +149,14 @@ textarea {
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-base);
     font-family: var(--font-family-base);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: var(--letter-spacing-normal);
     background-color: var(--background-white);
     transition: border-color var(--transition-speed) ease,
                 box-shadow var(--transition-speed) ease,
                 transform var(--transition-speed) ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Focus state with :focus pseudo-class */
@@ -266,13 +275,17 @@ button {
     border: none;
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-normal);
     cursor: pointer;
     margin-top: var(--spacing-lg);
     transition: background var(--transition-speed) ease,
                 transform var(--transition-speed) ease,
                 box-shadow var(--transition-speed) ease;
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* :hover pseudo-class for button */
