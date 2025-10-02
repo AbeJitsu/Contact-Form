@@ -1,0 +1,327 @@
+/* CSS Custom Properties (Variables) for Theming */
+:root {
+    /* Blue Color Palette - Various Shades for Good Contrast */
+    --very-light-blue: #f0f7ff;
+    --light-blue: #bbdefb;
+    --medium-blue: #2196f3;
+    --medium-dark-blue: #1565c0;
+    --dark-blue: #0d47a1;
+
+    /* Functional Colors (using blue shades) */
+    --primary-color: #2196f3;        /* medium-blue */
+    --primary-dark: #1565c0;         /* medium-dark-blue */
+    --primary-light: #64b5f6;        /* light-blue */
+    --success-color: #1976d2;        /* blue for success */
+    --error-color: #c62828;          /* red for better visibility */
+
+    /* Text Colors (blue-based) */
+    --text-primary: #0d47a1;         /* dark-blue */
+    --text-secondary: #1565c0;       /* medium-dark-blue */
+    --background-light: #f0f7ff;     /* very-light-blue */
+    --background-white: #ffffff;
+    --border-color: #bbdefb;         /* light-blue */
+    --border-focus: #2196f3;         /* medium-blue */
+
+    /* Spacing System - Increased for better white space */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+
+    /* Typography */
+    --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 18px;
+    --font-weight-normal: 400;
+    --font-weight-bold: 600;
+    --line-height: 1.6;
+
+    /* Border Radius */
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
+
+    /* Transitions */
+    --transition-speed: 0.3s;
+}
+
+/* CSS Reset with border-box */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scrolling with accessibility consideration */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+body {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--light-blue) 0%, var(--medium-dark-blue) 100%);
+    padding: var(--spacing-lg);
+}
+
+/* Form Container with enhanced box-shadow */
+.form-container {
+    background-color: var(--background-white);
+    border-radius: var(--border-radius-md);
+    padding: 60px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 20px 60px rgba(13, 71, 161, 0.15);
+    transform: translateY(0);
+    transition: transform var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+}
+
+/* Hover effect using transform */
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 70px rgba(13, 71, 161, 0.2);
+}
+
+/* Flexbox layout */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Typography - Visual Hierarchy */
+h2 {
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-primary);
+    text-align: center;
+    font-size: calc(var(--font-size-base) * 2);
+    font-weight: var(--font-weight-bold);
+    text-shadow: none;
+    letter-spacing: -0.5px;
+}
+
+/* Label styling with required indicator */
+label {
+    display: block;
+    margin: var(--spacing-md) 0 var(--spacing-xs);
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-base);
+}
+
+/* Add asterisk to required fields using ::after pseudo-element */
+label::after {
+    content: ' *';
+    color: var(--error-color);
+}
+
+/* Input and textarea base styles */
+input,
+textarea {
+    width: 100%;
+    padding: 16px 20px;
+    margin-bottom: var(--spacing-lg);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-base);
+    background-color: var(--background-white);
+    transition: border-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+}
+
+/* Focus state with :focus pseudo-class */
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.25);
+    transform: scale(1.01);
+}
+
+/* :focus-within for container when input has focus */
+form:focus-within .form-container {
+    box-shadow: 0 12px 30px rgba(33, 150, 243, 0.15);
+}
+
+/* :valid pseudo-class */
+input:valid,
+textarea:valid {
+    border-color: var(--success-color);
+}
+
+/* :invalid pseudo-class (only when touched) */
+input:invalid:not(:focus):not(:placeholder-shown),
+textarea:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--error-color);
+}
+
+/* :required pseudo-class visualization */
+input:required,
+textarea:required {
+    background-image: linear-gradient(to right, transparent, rgba(227, 242, 253, 0.3));
+}
+
+/* Hover state for inputs */
+input:hover,
+textarea:hover {
+    border-color: var(--primary-light);
+}
+
+/* Textarea specific styles */
+textarea {
+    resize: vertical;
+    min-height: 120px;
+    max-height: 300px;
+}
+
+/* Button with enhanced styling */
+button {
+    background: linear-gradient(135deg, var(--medium-blue), var(--medium-dark-blue));
+    color: var(--background-white);
+    padding: 18px 32px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    margin-top: var(--spacing-lg);
+    transition: background var(--transition-speed) ease,
+                transform var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+}
+
+/* :hover pseudo-class for button */
+button:hover {
+    background: linear-gradient(135deg, var(--medium-dark-blue), var(--dark-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(21, 101, 192, 0.4);
+}
+
+/* :active pseudo-class for button */
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(33, 150, 243, 0.3);
+}
+
+/* :disabled pseudo-class for button */
+button:disabled {
+    background: linear-gradient(135deg, var(--light-blue), var(--medium-blue));
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Mobile-first Responsive Design - Media Queries */
+
+/* Small devices (smartphones) - up to 640px */
+@media (max-width: 640px) {
+    body {
+        padding: var(--spacing-sm);
+    }
+
+    .form-container {
+        padding: var(--spacing-xl);
+    }
+
+    h2 {
+        font-size: calc(var(--font-size-base) * 1.5);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    label {
+        margin: var(--spacing-sm) 0 var(--spacing-xs);
+    }
+
+    input,
+    textarea {
+        padding: 14px 16px;
+        margin-bottom: var(--spacing-md);
+    }
+
+    button {
+        padding: 16px 24px;
+        font-size: var(--font-size-base);
+    }
+}
+
+/* Medium devices (tablets) - 641px to 1024px */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .form-container {
+        max-width: 600px;
+    }
+}
+
+/* Large devices (desktops) - 1025px and larger */
+@media (min-width: 1025px) {
+    .form-container {
+        max-width: 550px;
+    }
+
+    /* Scale effect on hover for large screens */
+    .form-container:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+}
+
+/* Dark mode support using prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark mode blue palette */
+        --very-light-blue: #e3f2fd;
+        --light-blue: #90caf9;
+        --medium-blue: #64b5f6;
+        --medium-dark-blue: #42a5f5;
+        --dark-blue: #2196f3;
+
+        /* High contrast colors for dark mode */
+        --text-primary: #ffffff;
+        --text-secondary: #e3f2fd;
+        --background-white: #0a0e1a;
+        --background-light: #1a1f2e;
+        --border-color: #2196f3;
+        --border-focus: #64b5f6;
+        --error-color: #ff5252;
+        --success-color: #69f0ae;
+    }
+
+    body {
+        background: linear-gradient(135deg, #0d47a1 0%, #01579b 100%);
+    }
+
+    h2 {
+        color: var(--text-primary);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    label {
+        color: var(--text-secondary);
+    }
+
+    input,
+    textarea {
+        background-color: #1a1f2e;
+        color: var(--text-primary);
+        border-color: var(--border-color);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #64b5f6;
+        opacity: 0.6;
+    }
+
+    .form-container {
+        background-color: var(--background-white);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+}
